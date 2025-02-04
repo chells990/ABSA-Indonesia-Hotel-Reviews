@@ -1,0 +1,26 @@
+# Ignore virtual environment files
+.venv/
+.env/
+*.pyc
+__pycache__/
+
+# Ignore IDE-specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Ignore Python cache and build files
+*.egg-info/
+dist/
+build/
+
+# Ignore data files
+# *.csv
+# *.pkl
+# *.joblib
+
+# Ignore key files
+secret/
+
+
