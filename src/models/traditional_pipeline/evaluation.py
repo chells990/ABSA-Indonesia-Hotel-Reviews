@@ -1,7 +1,7 @@
 from pathlib import Path
-from src.models.traditional_ml.training import load_and_convert_data
-from src.models.traditional_ml.text_preprocessor import TextPreprocessor
-from src.models.traditional_ml.inference import ABSAInferencer
+from src.models.traditional_pipeline.training import load_and_convert_data
+from src.models.traditional_pipeline.text_preprocessor import TextPreprocessor
+from src.models.traditional_pipeline.inference import ABSAInferencer
 
 
 

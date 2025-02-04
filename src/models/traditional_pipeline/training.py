@@ -3,9 +3,9 @@ import nltk
 from nltk.corpus import stopwords
 from pathlib import Path
 from torch.utils.data import DataLoader
-from src.models.traditional_ml.absa_svm import ABSASVM
+from src.models.traditional_pipeline.absa_svm import ABSASVM
 from src.models.deep_learning.absa_bert import ABSABERT
-from src.models.traditional_ml.text_preprocessor import TextPreprocessor
+from src.models.traditional_pipeline.text_preprocessor import TextPreprocessor
 from src.models.deep_learning.absa_dataset import ABSADataset
 import warnings
 
