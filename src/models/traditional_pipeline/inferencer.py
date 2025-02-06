@@ -1,7 +1,7 @@
 from pathlib import Path
 from transformers import AutoTokenizer
-from src.models.traditional_pipeline.bert_architecture import ABSABERT
-from src.models.traditional_pipeline.svm_architecture import ABSASVM
+from bert_architecture import ABSABERT
+from svm_architecture import ABSASVM
 import torch
 
 

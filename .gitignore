@@ -22,5 +22,6 @@ build/
 
 # Ignore key files
 secret/
+saved_models/
 
 
