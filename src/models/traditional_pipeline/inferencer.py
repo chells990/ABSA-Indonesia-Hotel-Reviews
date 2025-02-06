@@ -1,7 +1,7 @@
 from pathlib import Path
 from transformers import AutoTokenizer
-from src.models.deep_learning.absa_bert import ABSABERT
-from src.models.traditional_pipeline.absa_svm import ABSASVM
+from src.models.traditional_pipeline.bert_architecture import ABSABERT
+from src.models.traditional_pipeline.svm_architecture import ABSASVM
 import torch
 
 
@@ -32,7 +32,9 @@ class ABSAInferencer:
             padding='max_length',
             truncation=True,
             return_tensors='pt'
-        ).to(self.model.device)
+        )
+        # Move input tensors to the model's device
+        encoding = {k: v.to(self.model.device) for k, v in encoding.items()}
 
         preds = {}
         for aspect in self.aspects:

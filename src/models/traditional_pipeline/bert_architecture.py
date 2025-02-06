@@ -5,13 +5,16 @@ from torch.cuda.amp import autocast, GradScaler
 
 
 class ABSABERT:
-    def __init__(self, aspects, model_name='indolem/indobert-base-uncased'):
+    def __init__(self, aspects, model_name='indolem/indobert-base-uncased', load_models=True):
         self.aspects = aspects
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        self.models = {
-            a: AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=3)
-            for a in aspects
-        }
+        self.models = {}
+        if load_models:
+            self.models = {
+                a: AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=3)
+                for a in aspects
+            }
+        # Dynamically set device based on CUDA availability
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     def train(self, train_loader_dict, val_loader_dict, epochs=10, lr=2e-5):
@@ -67,21 +70,24 @@ class ABSABERT:
     def save(self, model_dir):
         model_dir = Path(model_dir)
         model_dir.mkdir(parents=True, exist_ok=True)
+        # Save tokenizer to the main directory
         self.tokenizer.save_pretrained(model_dir)
+        # Save each model to its own subdirectory
         for aspect in self.aspects:
-            aspect_dir = model_dir/f"{aspect}"
+            aspect_dir = model_dir / aspect
             aspect_dir.mkdir(exist_ok=True)
+            # Save model and tokenizer (if needed)
             self.models[aspect].save_pretrained(aspect_dir)
 
     @classmethod
     def load(cls, model_dir, aspects):
         model_dir = Path(model_dir)
-        instance = cls(aspects, model_name=model_dir)
+        # Create instance without initializing models
+        instance = cls(aspects, model_name=model_dir, load_models=False)
+
+        # Load models and move them to the instance's device
         instance.models = {
-            a: AutoModelForSequenceClassification.from_pretrained(model_dir/a)
+            a: AutoModelForSequenceClassification.from_pretrained(model_dir / a).to(instance.device)
             for a in aspects
         }
-        instance.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         return instance
-
-
