@@ -50,3 +50,44 @@ output: "batch_id": {{ {{ \"AC nya sangat bagus, tapi WIFI sering mati.\": {{ "a
 INPUT: {input_variable}
 OUTPUT:
 """
+
+batch_response_test = """
+{
+  "batch_1": {
+    "lumayan nyaman,tp kebersihan kmr mandi perlu ditingkatkan lg biar gk ada kuning2 di sudutnya lbh bgs": {
+      "kebersihan": 0
+    },
+    "kamarnya kurang maintenance. paling baik kamar mandi dibersihkan lebih sering. kamar mandi adalah bagian yang penting untuk pelanggan. kebersihan selimut bed sheet dan handuk juga perlu diperhatikan lebih jauh lagi.": {
+      "kebersihan": 0,
+      "linen": 0
+    },
+    "harga terjangkau, kamar luas, ada sofa, semua oke, kecuali kamar mandi. seharian keluar bau tak sedap entah apa masalahnya.": {
+      "bau": 0
+    },
+    "Jaringan WiFi dalam kamar lelet": {
+      "wifi": 0
+    },
+    "secara umum bagus, cuma sprei, sarung bantal dan handuk tidak layak...maaf..": {
+      "linen": 0
+    },
+    "Kamar bersih dan nyaman tetapi amenties dari airy tidak disediakan. Begitu juga dengan compliment free snack dari airy": {
+      "kebersihan": 1
+    },
+    "suasana .. and view-nya..kerennnnn... pegawainya ramahh... datang langsung check in... dan diantar ke kamar... untuk fasilitas buat anak2 lumayan... ada perosotan ayunan dan mainan lainnya.. kolam renang juga.. tp kolamnya Dingin... dan kurang bersih.. mohon ditingkatkan jg utk kebersihan kamar nya. thanks airy .. thank ariandri...sukses selalu..": {
+      "kebersihan": 0,
+      "service": 1
+    },
+    "WiFi nya tolong diperkuat sinyal dan ditambah bandwithnya": {
+      "wifi": 0
+    },
+    "plus: lokasi tenang, strategis, rate ekonomis. minus: kebersihan kurang, kamar bau, kran bulukan.": {
+      "kebersihan": 0,
+      "bau": 0
+    },
+    "kamar luas dan rapi, tapi sayang untuk tv kebetulan sedang jelek sinyalnya dan minta ganti ke kamar yg lain yg memiliki sinyal bagus tidak di perbolehkan karena pesan dari airy rooms dan tidak tersedia wifi": {
+      "tv": 0,
+      "wifi": 0
+    }
+  }
+}
+"""
