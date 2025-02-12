@@ -11,7 +11,7 @@ claude_key = os.getenv('ANTHROPONIC_API_KEY')
 
 # prompt
 ID_HOTEL_REVIEW_ABSA_PROMPT = """
-You are an expert in aspect based sentiment analysis for hotel reviews written in Indonesian. Your role is to analyze review texts and extract clear positive or negative sentiments for specific aspects. If an aspect is ambiguous or not clearly expressed, do not output it.
+Your role is to analyze review texts and extract clear positive or negative sentiments for specific aspects. If an aspect is ambiguous or not clearly expressed, do not output it.
 
 Aspects Consideration:
 Evaluate the following aspects:
