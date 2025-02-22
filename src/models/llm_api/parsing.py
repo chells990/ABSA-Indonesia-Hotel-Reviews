@@ -1,5 +1,6 @@
 import pandas as pd
 import json
+from pathlib import Path
 from openai import OpenAI
 from constant import ID_HOTEL_REVIEW_ABSA_PROMPT, batch_response_test
 import os
@@ -50,7 +51,8 @@ def call_openai_api(prompt):
 if __name__ == "__main__":
     aspect_keys = ["ac", "air_panas", "bau", "general", "kebersihan", "linen", "service", "sunrise_meal", "tv", "wifi"]
     test_df = pd.read_csv('source_data/test_preprocess.csv')
-    df_review = test_df['review'].head(20)
+    test_df["review_trimmed"] = test_df["review"].str.strip()
+    df_review = test_df["review_trimmed"]
     batched_reviews = batching_review(df_review.tolist(), n=10)
 
     all_rows = []
@@ -61,7 +63,7 @@ if __name__ == "__main__":
 
         batch_response = call_openai_api(formatted_prompt)
         batch_rows = process_batch_response(batch_id, batch_response, original_batch, aspect_keys)
-        all_rows.extend(batch_rows)  
+        all_rows.extend(batch_rows)
 
     df_final = pd.DataFrame(all_rows)
     columns_order = ["batch_id", "review"] + aspect_keys
@@ -72,4 +74,6 @@ if __name__ == "__main__":
     for col in aspect_keys:
         df_final[col] = df_final[col].map(label_map)
 
-    df_final.to_csv('output_test_model.csv', index=False)
+    test_df = test_df.merge(df_final, left_on="review_trimmed", right_on="review", how="left").drop(columns=["review_trimmed"])
+    eval_dir = Path("evaluation")
+    df_final.to_csv(eval_dir/"gpt_3.5-turbo_predictions.csv", index=False)

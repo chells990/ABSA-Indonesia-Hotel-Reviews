@@ -20,7 +20,7 @@ Evaluate the following aspects:
 - Bau: Observations on unpleasant odors.
 - General: Overall impressions of the review.
 - Kebersihan: Feedback on the hotel's cleanliness.
-- Linen: Opinions on bedding quality.
+- Linen: Opinions on bedding quality and free snack.
 - Service: Evaluations of the service provided.
 - Sunrise Meal: Comments on the breakfast experience.
 - Television (TV): Remarks on TV quality or functionality.
@@ -43,8 +43,8 @@ The output dict should have the following format:
 - Sometimes the review will be written in mixed languagues. You should be able to handle that as well and map it to the possible values in the aspects. You should approach it by translating the original text to indonesian first, then do the labelling.
 
 [EXAMPLES]
-input: "batch_id": {{ {{ "text_1": \"AC nya sangat bagus, tapi WIFI sering mati.\", "text_2": \"Pelayanannya memuaskan dan sarapan sangat lezat, meski linen kurang bagus.\" }} }}
-output: "batch_id": {{ {{ \"AC nya sangat bagus, tapi WIFI sering mati.\": {{ "ac": 1, "wifi": 0 }}, \"Pelayanannya memuaskan dan sarapan sangat lezat, meski linen kurang bagus.\": {{ "service": 1, "sunrise_meal": 1, "linen": 0 }} }} }}
+input: "batch_id": {{ {{ "text_1": \"AC nya sangat bagus, tapi WIFI sering mati.\", "text_2": \"Pelayanannya memuaskan dan sarapan sangat lezat, meski linen kurang bagus.\", "text_3": \""secara umum bagus, cuma sprei, sarung bantal dan handuk tidak layak...maaf.."\", "text_4": \"Kamar bersih dan nyaman tetapi amenties dari airy tidak disediakan. Begitu juga dengan compliment free snack dari airy\" }} }}
+output: "batch_id": {{ {{ \"AC nya sangat bagus, tapi WIFI sering mati.\": {{ "ac": 1, "wifi": 0 }}, \"Pelayanannya memuaskan dan sarapan sangat lezat, meski linen kurang bagus.\": {{ "service": 1, "sunrise_meal": 1, "linen": 0 }}, \"secara umum bagus, cuma sprei, sarung bantal dan handuk tidak layak...maaf..\": {{ "linen": 0, "general": 1}}, \"Kamar bersih dan nyaman tetapi amenties dari airy tidak disediakan. Begitu juga dengan compliment free snack dari airy\": {{ "kebersihan": 1, "linen": 0 }} }} }}
 
 [ABSA TASK]
 INPUT: {input_variable}
