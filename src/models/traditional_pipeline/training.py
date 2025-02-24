@@ -17,10 +17,11 @@ warnings.filterwarnings("ignore")
 def load_and_convert_data(file_path, aspect_cols):
     """Load CSV and convert sentiment labels to integers"""
     df = pd.read_csv(file_path)
-    label_map = {'neg': 0, 'neut': 1, 'pos': 2}
+    label_map = {'neg': 0, 'pos': 2}
 
     for col in aspect_cols:
-        df[col] = df[col].map(label_map).fillna(1).astype('int8')  # neut as default
+        df[col] = df[col].map(label_map).fillna(1) # 1 for neutral
+        df[col] = df[col].astype('int8')
     return df
 
 
