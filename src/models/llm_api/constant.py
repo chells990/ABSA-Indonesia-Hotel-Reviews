@@ -6,8 +6,6 @@ load_dotenv()
 
 # api key
 gpt_key = os.getenv('OPENAI_API_KEY')
-gemini_key = os.getenv('GOOGLE_API_KEY')
-claude_key = os.getenv('ANTHROPONIC_API_KEY')
 
 # prompt
 ID_HOTEL_REVIEW_ABSA_PROMPT = """
