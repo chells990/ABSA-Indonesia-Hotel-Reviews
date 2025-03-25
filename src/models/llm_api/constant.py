@@ -15,10 +15,10 @@ Aspects Consideration:
 Evaluate the following aspects:
 - Air Conditioner (AC): Comments on AC performance or issues.
 - Air Panas: Remarks regarding water temperature.
-- Bau: Observations on unpleasant odors.
-- General: Overall impressions of the review.
+- Bau: Covers observations about unpleasant odors, except those related to pillows or bedding, which fall under the Linen aspect.
+- General: Super strictly assess explicit overall experience using summary terms ("overall," "secara umum," "pokoknya", "selebihnya", "semua").
 - Kebersihan: Feedback on the hotel's cleanliness.
-- Linen: Opinions on bedding quality also include complimentary item like free snack and soap.
+- Linen: Opinions on bedding, linens (pillows & sheet), and towels, including their smell and overall quality, as well as free complimentary items like snacks, soap, and a trash can.
 - Service: Evaluations of the service provided.
 - Sunrise Meal: Comments on the breakfast experience.
 - Television (TV): Remarks on TV quality or functionality.
@@ -41,8 +41,8 @@ The output dict should have the following format:
 - Sometimes the review will be written in mixed languagues. You should be able to handle that as well and map it to the possible values in the aspects. You should approach it by translating the original text to indonesian first, then do the labelling.
 
 [EXAMPLES]
-input: "batch_id": {{ {{ "text_1": \"AC nya sangat bagus, tapi WIFI sering mati.\", "text_2": \"Pelayanannya memuaskan dan sarapan sangat lezat, meski linen kurang bagus.\", "text_3": \""secara umum bagus, cuma sprei, sarung bantal dan handuk tidak layak...maaf.."\", "text_4": \"Kamar bersih dan nyaman tetapi amenties dari airy tidak disediakan. Begitu juga dengan compliment free snack dari airy\" }} }}
-output: "batch_id": {{ {{ \"AC nya sangat bagus, tapi WIFI sering mati.\": {{ "ac": 1, "wifi": 0 }}, \"Pelayanannya memuaskan dan sarapan sangat lezat, meski linen kurang bagus.\": {{ "service": 1, "sunrise_meal": 1, "linen": 0 }}, \"kamar mandi nya sedikit bau, selebihnya memuaskan.\": {{ "bau": 0, "general": 1}}, \"Petugasnya ramah banget., tapi kelengkapan kurang., tidak ada air panas., makanan kompliment juga tidak ada..\": {{ "air_panas": 0, "linen": 0, "service": 1 }} }} }}
+input: "batch_id": {{ {{ "text_1": \"AC nya sangat bagus, tapi WIFI sering mati.\", "text_2": \"Pelayanannya memuaskan dan sarapan sangat lezat, meski linen kurang bagus.\", "text_3": \"Tempat strategis dipusat kota, tp kok gak dpt snack ya? Trus ada bau asap rokok\", "text_4": \"Petugasnya ramah banget., tapi kelengkapan kurang., tidak ada air panas., makanan kompliment juga tidak ada..\", "text_5": \"kamar mandi nya sedikit bau, selebihnya memuaskan.\", "text_6": \"AC kurang dingin, bantal bau iler\", "text_7": \"gak ada snack nya  payah, klo yg lain ok\"}} }}
+output: "batch_id": {{ {{ \"AC nya sangat bagus, tapi WIFI sering mati.\": {{ "ac": 1, "wifi": 0 }}, \"Pelayanannya memuaskan dan sarapan sangat lezat, meski linen kurang bagus.\": {{ "service": 1, "sunrise_meal": 1, "linen": 0 }}, \"Tempat strategis dipusat kota, tp kok gak dpt snack ya? Trus ada bau asap rokok\": {{ "bau": 0, "linen": 1}}, \"Petugasnya ramah banget., tapi kelengkapan kurang., tidak ada air panas., makanan kompliment juga tidak ada..\": {{ "air_panas": 0, "linen": 0, "service": 1 }}, \"kamar mandi nya sedikit bau, selebihnya memuaskan.\": {{ "bau": 0, "general": 1 }}, \"AC kurang dingin, bantal bau iler\": {{ "ac": 0, "linen": 0 }}, \"gak ada snack nya  payah, klo yg lain ok\": {{ "linen": 0, "general": 1 }} }} }}
 
 [ABSA TASK]
 INPUT: {input_variable}
@@ -56,10 +56,10 @@ Aspects Consideration:
 Evaluate the following aspects:
 - Air Conditioner (AC): Comments on AC performance or issues.
 - Air Panas: Remarks regarding water temperature.
-- Bau: Observations on unpleasant odors.
-- General: Overall impressions of the review.
+- Bau: Covers observations about unpleasant odors, except those related to pillows or bedding, which fall under the Linen aspect.
+- General: Super strictly assess explicit overall experience using summary terms ("overall," "secara umum," "pokoknya", "selebihnya", "semua").
 - Kebersihan: Feedback on the hotel's cleanliness.
-- Linen: Opinions on bedding quality also include complimentary item like free snack and soap.
+- Linen: Opinions on bedding, linens (pillows & sheet), and towels, including their smell and overall quality, as well as free complimentary items like snacks, soap, and a trash can.
 - Service: Evaluations of the service provided.
 - Sunrise Meal: Comments on the breakfast experience.
 - Television (TV): Remarks on TV quality or functionality.
